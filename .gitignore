@@ -1,0 +1,18 @@
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk(busy)
+*.fls(busy)
+*.synctex.gz(busy)
+*.bib
+*.nav
+*.snm
+*.vrb
+*.synctex.gz
+*.xml
+*.synctex(busy)
+*.synctex.gz(busy)
