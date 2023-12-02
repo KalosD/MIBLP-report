@@ -87,148 +87,31 @@
 \section{问题背景与研究意义}
 
 \begin{frame}
-	\frametitle{\bf 问题背景与研究意义} 
+	\frametitle{问题背景与研究意义} 
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{\bf 问题背景与研究意义} 
+	\frametitle{问题背景与研究意义} 
 
 \end{frame}
 
 \section{研究现状}
 
 \begin{frame}
-	\frametitle{\bf 研究现状} 
-    Let $$\bar{X} = \nabla f_{S_k}(\omega^k), \bar{Y} = \nabla f_{S_k}(\phi_i^k), or \bar{Y} = \nabla f_{S_k}(\psi_i^k)$$\\
-   \textbf { (SAGA/SVRG)}
-    $$g_k =\bar{X}-\bar{Y}+E(\bar{Y}) $$
-    $$E(g_k) = E(\bar{X}-\bar{Y}+E(\bar{Y})) = E(\bar{X})$$
-    $$Var(g_k) = Var(\bar{X}-\bar{Y}+E(\bar{Y}))=Var(\bar{X}-\bar{Y})$$
-    \textbf { (SAG)}
-    $$g_k = \frac{\bar{X}-\bar{Y}}{n}+E(\bar{Y}) $$
-	$$E(g_k) = E(\frac{\bar{X}-Y}{n}+E(\bar{Y})) = \frac{1}{n}E(\bar{X})+(1-\frac{1}{n})E(\bar{Y})$$
-	$$Var(g_k) = Var(\frac{\bar{X}-\bar{Y}}{n}+E(\bar{Y}))= \frac{1}{n^2} Var(\bar{X}-\bar{Y})$$
+	\frametitle{研究现状} 
+    
 \end{frame}
 
 \begin{frame}
-	\frametitle{\bf Gradient Estimate with Unbiasedness and Minimal Variance} 
-	\textbf { Estimator}：$$\theta_{\gamma}=\bar{X}-\gamma(\bar{Y}-E(\bar{Y}))$$ \\
-	\textbf { Expected Value}：$$E(\theta_{\gamma})=E(\bar{X})$$
-	\textbf { Variance}：\begin{equation}
-		\begin{aligned}
-			Var(\theta_{\gamma}) & =Var(\bar{X}-\gamma(\bar{Y}-E(\bar{Y})))\\
-			& =Var(\bar{X})+\gamma^2 Var(\bar{Y})-2 \gamma Cov(\bar{X},\bar{Y})
-			\label{2:variance}
-		\end{aligned}
-	\end{equation}
-	\textbf { Best Param}：
-\begin{equation}
-		\gamma^*=\frac{Cov(\bar{X}, \bar{Y})}{Var(\bar{Y})}\approx \frac{s_{XY}}{s_Y^2}
-			\label{3:gamma_star}
-\end{equation}
-\begin{equation}
-	\begin{aligned}
-		s_{XY}&=\frac{1}{|S|-1}\sum_{j\in S_k}(X_j-\bar{X})(Y_j-\bar{Y})\\
-		s_{Y}^2&=\frac{1}{|S|-1}\sum_{j\in S_k}(Y_j-\bar{Y})^2
-		\label{2:sample_variance_1}
-	\end{aligned}
-\end{equation}
+	\frametitle{研究现状} 
 
 \end{frame}
 
-\begin{frame}
-	\frametitle{\bf Estimation of $\gamma^*$} 
-\begin{equation}
-	\begin{aligned}
-		Cov(\bar{X},\bar{Y})  &=Cov(\frac{1}{|S|}\sum_{j\in S_k} X_j,\frac{1}{|S|}\sum_{j\in S_k} Y_j)=\frac{1}{|S|^2}Cov(\sum_{j\in S_k} X_j,\sum_{j\in S_k} Y_j)\\
-		&=\frac{1}{|S|^2}\sum_{j\in S_k} Cov(X_j,Y_j)=\frac{1}{|S|} Cov(X,Y)\approx \frac{1}{|S|}s_{XY}
-		\label{2:cov_estimate}
-	\end{aligned}
-\end{equation}
-\begin{equation}
-	\begin{aligned}
-		Var(\bar{Y})  &=Var(\frac{1}{|S|}\sum_{j\in S_k} Y_j)=\frac{1}{|S|^2}Var(\sum_{j\in S_k} Y_j)\\&=\frac{1}{|S|^2}\sum_{j\in S_k} Var(Y_j)		=\frac{1}{|S|} Var(Y)\approx \frac{1}{|S|}s_{Y}^2
-		\label{2:var_estimate}
-	\end{aligned}
-\end{equation}
-\begin{equation}
-	\begin{aligned}
-		s_{XY}&=\frac{1}{|S|-1}\sum_{j\in S_k}(X_j-\bar{X})(Y_j-\bar{Y})\\
-		s_{Y}^2&=\frac{1}{|S|-1}\sum_{j\in S_k}(Y_j-\bar{Y})^2
-		\label{2:sample_variance}
-	\end{aligned}
-\end{equation}
-\end{frame}
-\begin{frame}
-	\frametitle{\bf The Stochastic Conjugate Gradient Algorithm with Variance Reduction} 
-			\textbf { CGVR(Ran Xin, Usman A. Khan, and Soummya Kar, 2020)}
-$$g_k = \nabla f_{S_k}(\omega^k)-\nabla f_{S_k}(\psi_j^k)+ \frac{1}{n} \sum_{i=1}^{n}\nabla f_i(\psi_i^k)$$
-$$d_k = -g_k +\beta_k d_{k-1}$$
-			\textbf { SCGA(Caixia Kou and Han Yang, 2022)}
-	$$g_k = \nabla f_{S_k}(\omega^k)-\nabla f_{S_k}(\phi_j^k)+ \frac{1}{n} \sum_{i=1}^{n}\nabla f_i(\phi_i^k)$$
-    $$d_k = -g_k +\beta_k d_{k-1}$$
-\end{frame}
-
-\section{Algorithm and Convergence analysis}
-\begin{frame}
-\begin{algorithm}[H]
-	\DontPrintSemicolon
-	\textbf{Initialization:} .....\\
-	\textbf{Iteration:}\\
-	\For {$k = 1,2...$} 
-	{
-		......\\
-		\For {$j : S_k$}
-		{
-			Compute $\nabla f_{j}(\omega_k)$ and store it into matrix $\nabla f_{[S_k]}(\omega_k) $\\
-			Select $\nabla f_{j}(\omega_{[k-1]})$ in $\nabla f(\omega_{[k-1]})$ and store it into matrix $\nabla f_{[S_k]}(\omega_{[k-1]})$\\
-		}
-		\For {$r = 1,2...d$}
-		{
-			Compute \textcolor{red}{the sample covariance} of $\nabla f_{[S_k]}^{(r)}(\omega_k)$ and $\nabla f_{[S_k]}^{(r)}(\omega_{[k-1]})$, \textcolor{red}{the sample variance} of $\nabla f_{[S_k]}^{(r)}(\omega_{[k-1]})$ using  (\ref{2:sample_variance})\\
-			Compute \textcolor{red}{$\gamma^{*(r)}$} using (\ref{3:gamma_star})
-		}
-		Compute $\nabla f_{S_k}(\omega_k)=\frac{1}{|S|}  \sum_{j\in S_k}\nabla f_{j}(\omega_k),\mu_{S_k}=\frac{1}{|S|} \sum_{j\in S_k}\nabla f_{j}(\omega_{[k-1]})$ \\			
-		Compute $g_k =\nabla f_{S_k}(\omega_k)-\textcolor{red}{\gamma^*} (\mu_{S_k}- \mu_{k-1})$\\
-		......\\
-	}
-	\caption{SCGA with the minimal variance stochastic gradient estimate}
-\end{algorithm}
-\end{frame}
-\begin{frame}
-	\begin{algorithm}[H]
-		\DontPrintSemicolon
-		\textbf{Initialization:} Given $x_0 \in R^d$, compute $h_0 = \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(x_0)$:\\
-		\textbf{Iteration:}		
-		\For {$l = 1,2...T$} 
-		{
-			......\\
-			\For {$k = 1,2...m$} 
-			{
-				......\\
-				\For {$j : S_{k}$}
-				{
-					Compute $\nabla f_{j}(\omega_k),\nabla f_{j}(\omega_0)$\\
-					Store $\nabla f_{[S_k]}(\omega_k)\leftarrow \nabla f_{j}(\omega_k),\nabla f_{[S_k]}(\omega_{0})\leftarrow \nabla f_{j}(\omega_0)$\\
-				}
-				\For {$r = 1,2...d$}
-				{
-					Compute \textcolor{red}{the sample covariance} $\nabla f_{[S_k]}^{(r)}(\omega_k)$ and $\nabla f_{[S_k]}^{(r)}(\omega_0)$,\textcolor{red}{ the sample variance} of $\nabla f_{[S_k]}^{(r)}(\omega_0)$ using  (\ref{2:sample_variance})\\
-					Compute \textcolor{red}{$\gamma^{*(r)}$} using (\ref{3:gamma_star})
-				}
-				Compute $\nabla f_{S_k}(\omega_k),\nabla f_{S_k}(\omega_0)$ \\			
-				Compute $g_k =\nabla f_{S_k}(\omega_k)-\textcolor{red}{\gamma^*} (\nabla f_{S_k}(\omega_0)- \mu_{l-1})$\\
-				......\\		
-			}
-			......
-		}
-		\caption{CGVR with the minimal variance stochastic gradient estimate}
-	\end{algorithm}
-\end{frame}
+\section{研究内容与方法}
 
 \begin{frame}
-		\frametitle{\bf Assumptions} 
+		\frametitle{研究方法} 
 	\textbf{Assumption 1($\mu$ -strong convexity and $L$  -smoothness)}  $f_i,1 \leq i \leq n$ is strongly convex and has Lipschitz continuous gradients, i.e.,
 	
 	\begin{equation}
@@ -245,146 +128,13 @@ $$d_k = -g_k +\beta_k d_{k-1}$$
 \end{frame}
 
 \begin{frame}
-		\frametitle{\bf Related Lemma} 
-	\begin{lemma}  
-		Under Assumption1, we have
-		\begin{equation}
-			2\mu(f(\omega)-f(\omega^*)) \leq \|\nabla f(w)\|^2 \leq 2L(f(\omega)-f(\omega^*))
-			\label{4:lemma_1_formula}
-		\end{equation}
-		Where $\omega \in R^d$, $\omega^*$ is the unique minimizer
-	\end{lemma}
-	\begin{lemma} 
-		Consider that Alg1 and Alg2 (CG) algorithm, where step size $\alpha_k$ satisfies strong Wolfe condition with $0 < \sigma_2 < \frac{1}{2}$ and $\beta_k$  satisfies $|\beta_k| \leq \beta_k^{FR}$ , then it generates descent directions $d_k$ satisfying
-		\begin{equation}
-			-\frac{1}{1-\sigma_2} \leq \frac{\langle g_k,d_k \rangle}{\|g_k\|^2} \leq \frac{2\sigma_2-1}{1-\sigma_2}
-			\label{4:lemma_2_formula}
-		\end{equation} 
-	\end{lemma}
-\end{frame}
-\begin{frame}
-	\frametitle{\bf Convergence of Alg1} 
-\begin{theorem}  
-	Let Assumption 1,2,3 hold. If the bound of the step-size in Alg1 satisfies:
-	
-	\begin{equation}
-		0 < \alpha_1 < \frac{1-\beta}{2L\sigma_1}
-		\label{4:alpha_between}
-	\end{equation} 
-	Then we have:  $\forall k>0$
-	
-	\begin{equation}
-		E(f(\omega_k))-f({\omega^*}) \leq C\xi^k (E(f(\omega_0))-f(\omega^*))
-		\label{4:theorem_concludtion}
-	\end{equation} 
-	where $\xi = \frac{(1-\sigma_1)(1-\beta)+2L\alpha\sigma_1\sigma_2(1-\beta^m)}{2\mu\sigma_1m(1-\sigma_2)(1-\beta)}<1, \omega^*$ is the unique minimizer of $f$
-\end{theorem}
+	\frametitle{研究方法} 
+
 \end{frame}
 
+\section{计划与预期成果}
 \begin{frame}
-	\frametitle{\bf Convergence of Alg2} 
-\begin{theorem}
-	Let Assumption 1,2,3 hold. Let $$m>\frac{(1-\sigma_1)+2L\alpha_2\sigma_1\sigma_2\beta}{2\mu\sigma_1\alpha_1(1-\sigma_2)}$$
-	Then we have:  $\forall l>0$
-	
-	\begin{equation}
-		E(f(x_l))-f({\omega^*}) \leq \xi^l (E(f(x_0))-f(\omega^*))
-		\label{4:theorem2_conludtion}
-	\end{equation} 
-	where $$\xi = \frac{(1-\sigma_1)(1-\beta)+2L\alpha\sigma_1\sigma_2(1-\beta^m)}{2\mu\sigma_1m(1-\sigma_2)(1-\beta)}<1$$ and $ \omega^*$   is the unique minimizer of $f$
-\end{theorem}
-\end{frame}
-\section{Numerical Experiments}
-\begin{frame}
-	\frametitle{\bf Datasets} 
-\begin{center}
-	\begin{table}
-		\centering
-		\caption{Summary of data sets used in numerical experiments}
-		\label{tab:1}       % Give a unique label
-		% For LaTeX tables use
-		\begin{tabular}{l c c l}
-			\hline\noalign{\smallskip}
-			dataset & d & n & type \\
-			\noalign{\smallskip}\hline\noalign{\smallskip}
-			A9a & 123 & 32561&binary classification  \\
-			Ijcnn1 & 22 & 49990 &binary classification  \\
-			Protein & 74 & 145751&binary classification  \\
-			Quantum & 78 & 50000&binary classification  \\
-			W8a & 300 & 49749&binary classification  \\
-			Covtype & 54 & 581012 &binary classification  \\
-			YearPredictionMSD & 90 & 463715 &regression \\
-			Pyrim & 27 & 74 &regression \\
-			Bodyfat & 24 & 252&regression  \\
-			Triazines & 60 & 180&regression  \\
-			Eunite2001 & 16 & 336&regression  \\
-			Cpusmall & 12 & 8192&regression  \\
-			\noalign{\smallskip}\hline
-		\end{tabular}
-	\end{table}
-\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\bf Test Function} 
-The ridge regression model are presented as follows:
-\begin{equation}
-	\begin{aligned}
-		\min\limits_{\omega} \frac{1}{n} \sum_{i=1}^{n} (y_i -x_i \omega)^2 +\lambda \|\omega\|^2
-		\label{5:ridge}
-	\end{aligned}
-\end{equation} 
-where $x_i \in R^d$ is denoted the feature vector of the i-th  data sample, $y_i \in R$  is denoted the actual value of the i-th data sample, and $\lambda$  is the regularization parameter.
-\end{frame}
-\begin{frame}
-	\frametitle{\bf Numerical Results} 
-\begin{figure}
-	\begin{center}
-		% \includegraphics[width=0.5\textwidth]{variance.eps}
-	\end{center}
-	\caption{Variance comparison of stochastic gradient estimates: $g_{S_l}^k(\gamma=\gamma^*)$ and $g_{S_l}^k(\gamma=1)$}
-	\label{fig:1}       % Give a unique label
-\end{figure}
-\begin{equation}
-	\begin{aligned}
-		g_{S_l}^k(\gamma) &= \nabla f_{S_l}(w_{101})-\gamma(\nabla f_{S_l}(w_{k})-\frac{1}{n}\sum_{i=1}^n \nabla f_i(w_k))
-		l=1,...100
-		\label{5:experiment_gradient}
-	\end{aligned}
-\end{equation}
-\begin{equation}
-	\begin{aligned}
-		Var(g_{S_l}^k(\gamma))=\frac{1}{100}\sum_{l=1}^{100}(g_{S_l}^k(\gamma)-\frac{1}{100}\sum_{l=1}^{100}g_{S_l}^k(\gamma))^2, k=0,1,2...100
-		\label{5:experiment_variance}
-	\end{aligned}
-\end{equation}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\bf Numerical Results} 
-
-\begin{figure}
-	\begin{center}
-		% \includegraphics[width=0.95\textwidth]{total1.eps}
-	\end{center}
-	\caption{performance profiles of SCGA,CGVR,Alg1,Alg2 on the six data sets of binary classification (x-axis is times of iteration, y-axis is loss value in terms of log10)}
-	\label{fig:2}       % Give a unique label
-\end{figure}
-\end{frame}
-
-\begin{frame}
-	\frametitle{\bf Numerical Results} 
-\begin{figure}
-	\begin{center}
-		% \includegraphics[width=0.95\textwidth]{total2.eps}
-	\end{center}
-	\caption{performance profiles of SCGA,CGVR,Alg1,Alg2 on the six data sets of regression (x-axis is times of iteration, y-axis is loss value in terms of log10)}
-	\label{fig:3}       % Give a unique label
-\end{figure}
-\end{frame}
-\section{Conclusion}
-\begin{frame}
-	\frametitle{\bf Conclusion} 
+	\frametitle{计划与预期成果} 
 			    \begin{enumerate}[(1)]
 		\item Propose the minimal variance stochastic gradient estimate \\
 	\item Propose two improved algorithms of SCGA and CGVR: Alg1 and Alg2
@@ -393,15 +143,6 @@ where $x_i \in R^d$ is denoted the feature vector of the i-th  data sample, $y_i
 \end{enumerate}
 \end{frame}
 \begin{frame}
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
-\vspace{1em}
 \vspace{1em}
 \centering
 \textcolor{blue}{\LARGE Thanks for your attention!}
