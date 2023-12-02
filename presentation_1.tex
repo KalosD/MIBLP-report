@@ -1,5 +1,4 @@
 \documentclass{beamer}
-\usepackage{xeCJK}
 
 %%%%% ===== 设置主题 *****
 \usetheme{Berlin}
@@ -27,7 +26,6 @@
 \usepackage{bm}
 \usepackage{amsthm}
 \usepackage{ulem}
-% \usepackage{ctex}
 % \usepackage{algorithmicx,algorithm}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 \usepackage{fontspec}
@@ -43,22 +41,22 @@
 
 %%%%% ===== 自定义命令 *****
 \newcommand{\myem}[1]{\textcolor{blue}{#1}}
+\renewcommand{\today}{\number\year 年\number\month 月\number\day 日}
 %\newtheorem{theorem}{Theorem}
 
 \begin{document}
-\title[最优潮流]%
-{A Stochastic Conjugate Algorithms with the Minimized Variance Reduction
-	\\}%An Adaptive Primal-Dual  Second-Order Corrector Algorithm  For Linear Programming
+\title[新能源与储能容量配置优化研究]%
+{新能源与储能容量配置优化研究}
+%An Adaptive Primal-Dual  Second-Order Corrector Algorithm  For Linear Programming
 % \subtitle{subtitle if necessary}
 
-\author[Hongbo Du]%
-{Hongbo Du\\
-Instructed by Caixia Kou\rule[0pt]{0pt}{20pt}\\}
+\author[杜洪博]%
+{报告人: 杜洪博\\
+导\quad 师: 寇彩霞\rule[0pt]{0pt}{20pt}\\}
 %  \textcolor{red}{\texttt{xxxx@xxxx.xxx}}}
 
 \institute[BUPT]{\textcolor[rgb]{0.0,0.0,0.10}%
-{\small\ttfamily School of Science\\
-Beijing University of Posts and Telecommunications\\[10pt]}}
+{\small\ttfamily 北京邮电大学\ 理学院\\[10pt]}}
 
 \date{\today}
 
@@ -86,48 +84,22 @@ Beijing University of Posts and Telecommunications\\[10pt]}}
 
 
 
-\section{Introduction}
+\section{问题背景与研究意义}
 
 \begin{frame}
-	\frametitle{\bf Introduction} 
-	\textbf { The research problem }
-	$$\min\limits_{\omega \in R^{d}} f(\omega) = \frac{1}{n} \sum_{i=1}^n f_i(\omega)$$\\
-	\textbf {Linear regression（Ridge regression）}
-	$$\min\limits_{\omega \in R^{d}} f(\omega) =\frac{1}{n} \sum_{i=1}^n(x_i^T \omega - y_i)^2 + \frac{\lambda}{2}\Vert \omega \Vert ^2= \frac{1}{n} \sum_{i=1}^n f_i(\omega)$$
-	$$f_i(\omega)=  (x_i^T \omega - y_i)^2 + \frac{\lambda}{2}\Vert \omega \Vert ^2$$\\
-	\textbf { Logistic regression  }
-	$$\min\limits_{\omega \in R^{d}} f(\omega) =\frac{1}{n} \sum_{i=1}^n log(1+exp(-y_i x_i^T \omega)) + \frac{\lambda}{2}\Vert \omega \Vert ^2 $$
-$$f_i(\omega)= log(1+exp(-y_i x_i^T \omega)) + \frac{\lambda}{2}\Vert \omega \Vert ^2	$$\\
+	\frametitle{\bf 问题背景与研究意义} 
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{\bf Introduction} 
-	\textbf { GD(Gradient Decent)}
-	$$\omega_{k+1}=\omega_k - \alpha_k \nabla f(\omega_k)$$
-	$$ \nabla f(\omega_k) = \frac{1}{n} \sum_{i=1}^n\nabla f_i(\omega_k) $$
-	\textbf { SGD(Robbin, Monro, 1951)}  
-	$$\omega_{k+1}=\omega_k - \alpha_k \nabla f_i(\omega_k) $$
-    \textbf { Mini-batch SGD (Shalev-Shwartz et al., 2007)} \\
-    Fixed stepsize：$$\omega_{k+1}=\omega_k - \alpha \nabla f_{S_k}(\omega_k)$$
-    Decreased stepsize：$$\omega_{k+1}=\omega_k - \alpha_k \nabla f_{S_k}(\omega_k) $$
-    $\text{where }\nabla f_{S_k}(\omega_k)=\frac{1}{|S|} \sum_{i\in S_k} \nabla f_i(\omega_k)$
+	\frametitle{\bf 问题背景与研究意义} 
+
 \end{frame}
 
-\begin{frame}
-	\frametitle{\bf The Stochastic Gradient Algorithm with Variance Reduction} 
-			\textbf { SVRG(R. Johnson and T. Zhang, 2013)}
-$$g_k = \nabla f_j(\omega^k)-\nabla f_j(\psi_j^k)+ \frac{1}{n} \sum_{i=1}^{n}\nabla f_i(\psi_i^k)$$
-$$g_k = \nabla f_{S_k}(\omega^k)-\nabla f_{S_k}(\psi_j^k)+ \frac{1}{n} \sum_{i=1}^{n}\nabla f_i(\psi_i^k)$$
-			\textbf { SAGA(A. Defazio, F. Bach, and S. Lacoste-Julien, 2014)}
-	$$g_k = \nabla f_{S_k}(\omega^k)-\nabla f_{S_k}(\phi_j^k)+ \frac{1}{n} \sum_{i=1}^{n}\nabla f_i(\phi_i^k)$$
-\textbf { SAG (M. Schmidt, N. Le Roux, and F. Bach, 2017)}
-$$g_k = \frac{\nabla f_{S_k}(\omega^k)-\nabla f_{S_k}(\phi_j^k)}{n} + \frac{1}{n}\sum_{i=1}^{n}\nabla f_i(\phi_i^k)$$
-\end{frame}
-
-\section{The Minimal Variance Stochastic Gradient Estimate}
+\section{研究现状}
 
 \begin{frame}
-	\frametitle{\bf Motivation} 
+	\frametitle{\bf 研究现状} 
     Let $$\bar{X} = \nabla f_{S_k}(\omega^k), \bar{Y} = \nabla f_{S_k}(\phi_i^k), or \bar{Y} = \nabla f_{S_k}(\psi_i^k)$$\\
    \textbf { (SAGA/SVRG)}
     $$g_k =\bar{X}-\bar{Y}+E(\bar{Y}) $$
