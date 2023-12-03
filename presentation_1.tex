@@ -47,8 +47,7 @@
 \begin{document}
 \title[新能源与储能容量配置优化研究]%
 {新能源与储能容量配置优化研究}
-%An Adaptive Primal-Dual  Second-Order Corrector Algorithm  For Linear Programming
-% \subtitle{subtitle if necessary}
+
 
 \author[杜洪博]%
 {报告人: 杜洪博\\
@@ -63,8 +62,6 @@
 % ===== title page ====================================
 \begin{frame}[plain]
 	\titlepage
-	%  Acknowledgement: part of this slides is based on Prof. Shiqian Ma and
-	% Prof. Stephen P. Boyd’s lecture notes
 \end{frame}
 
 \begin{frame}
@@ -87,12 +84,12 @@
 \section{问题背景与研究意义}
 
 \begin{frame}
-	\frametitle{问题背景与研究意义} 
+	\frametitle{问题背景} 
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{问题背景与研究意义} 
+	\frametitle{研究意义} 
 
 \end{frame}
 
@@ -111,20 +108,8 @@
 \section{研究内容与方法}
 
 \begin{frame}
-		\frametitle{研究方法} 
-	\textbf{Assumption 1($\mu$ -strong convexity and $L$  -smoothness)}  $f_i,1 \leq i \leq n$ is strongly convex and has Lipschitz continuous gradients, i.e.,
+		\frametitle{研究内容} 
 	
-	\begin{equation}
-		\mu I \prec \nabla^2 f_i(w)\prec LI 
-		\label{4:assumptinon_1}
-	\end{equation}
-	For $\omega \in R^d$, $\mu$ is strong convexity constant and $L$ is Lipschitz constant.\\
-	\textbf{Assumption 2 (low and upper bounds of step size)} every step size $\alpha_k$  in Alg1 and Alg2 algorithm satisfies  $\alpha_1 \leq \alpha_k \leq \alpha_2$\\
-	\textbf{Assumption 3 (upper bound of scalar $\beta_k$ )} There exists constants $\beta$  such that 
-	\begin{equation}
-		\beta_k \leq \frac{\|g_k\|^2}{\|g_{k-1}\|^2} \leq \beta
-		\label{4:assumption_3}
-	\end{equation} 
 \end{frame}
 
 \begin{frame}
@@ -135,13 +120,12 @@
 \section{计划与预期成果}
 \begin{frame}
 	\frametitle{计划与预期成果} 
-			    \begin{enumerate}[(1)]
-		\item Propose the minimal variance stochastic gradient estimate \\
-	\item Propose two improved algorithms of SCGA and CGVR: Alg1 and Alg2
-	\item Prove the linear convergence rate of the new algorithms under strong convexity and smoothness
-	\item From a series of experiments, compared with SCGA and CGVR, Alg1 and Alg2 is competitive algorithms.
-\end{enumerate}
+			    
 \end{frame}
+
+
+
+% ====== End =========================================
 \begin{frame}
 \vspace{1em}
 \centering
