@@ -33,10 +33,12 @@
 %\bibliographystyle{plain}
 \usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
 %\addbibresource{example.bib} %BibTeX数据文件及位置
-\addbibresource{bibtex3.bib}
+\addbibresource{reference.bib}
 \setbeamerfont{footnote}{size=\tiny}
 \renewcommand{\baselinestretch}{1.1}
-
+\usepackage{ctex}
+\setCJKfamilyfont{myfont}{SimSun.ttf}
+\newcommand{\MyFont}{\CJKfamily{myfont}}
 %%%%% ===== 自定义命令 *****
 \newcommand{\myem}[1]{\textcolor{blue}{#1}}
 \renewcommand{\today}{\number\year 年\number\month 月\number\day 日}
@@ -81,7 +83,7 @@
 
 \begin{frame}
 	\frametitle{问题背景与研究意义} 
-	\qquad 我国沙漠、戈壁、荒漠地区风能、太阳能资源丰富,习近平总书记在《生物多样性公约》第十五次缔约方大会领导人峰会主旨讲话中提出,中国将大力发展新能源,在沙漠、戈壁、荒漠地区加快规划建设大型风电光伏基地项目\footfullcite{习}。建设“沙戈荒”大型新能源基地是实现我国“碳达峰、碳中和”目标的重要举措\footfullcite{ref1}。
+	\qquad 我国沙漠、戈壁、荒漠地区风能、太阳能资源丰富,习近平总书记在《生物多样性公约》第十五次缔约方大会领导人峰会主旨讲话中提出,中国将大力发展新能源,在沙漠、戈壁、荒漠地区加快规划建设大型风电光伏基地项目\footfullcite{ref1}。建设“沙戈荒”大型新能源基地是实现我国“碳达峰、碳中和”目标的重要举措\footfullcite{ref2}。
 	
 	\qquad 所以为了提高系统的经济性、可靠性,在规划阶段如何合理配置新能源电源及储能的容量是一个重要的研究问题。
 	
@@ -91,20 +93,20 @@
 
 \begin{frame}
 	\frametitle{研究现状} 
-    文献[9]研究了支撑新能源基地电力外送的电源组合优化配置策略,测算了新能源基地为满足通道利用率和运行经济性所需配置的电化学储能装机占比。
+	\qquad 刘泽洪\footfullcite{liuzehong2023} 研究了支撑新能源基地电力外送的电源组合优化配置策略,测算了新能源基地为满足通道利用率和运行经济性所需配置的电化学储能装机占比。
+
+	\qquad 吴瑊\footfullcite{wujian2023} 针对系统友好型“无火电”能源大基地构建开展研究,从经济性、调峰、一次调频、惯例响应等方面评估了新能源与储能在能源大基地中对火电机组的替代作用。
 	
-	文献[10]针对系统友好型“无火电”能源大基地构建开展研究,从经济性、调峰、一次调频、惯例响应等方面评估了新能源与储能在能源大基地中对火电机组的替代作用。
-	
-	文献[11]提出了电力系统源-网-储灵活性资源协调优化规划模型,考虑各类灵活性资源约束,从不同时间和空间尺度统筹优化新能源电源、储能及电网互联容量。
+	\qquad 金晨\footfullcite{jinchen2021} 提出了电力系统源-网-储灵活性资源协调优化规划模型,考虑各类灵活性资源约束,从不同时间和空间尺度统筹优化新能源电源、储能及电网互联容量。
 \end{frame}
 
 \begin{frame}
 	\frametitle{研究现状} 
-	文献[12]提出了一种基于多目标规划的光伏电站+光热电站的混合优化配置方法。
+	\qquad Allen\footfullcite{Allen2018} 提出了一种基于多目标规划的光伏电站+光热电站的混合优化配置方法。
 	
-	文献\footfullcite{ref3} 针对含风电、光伏、光热、火电、水电的多能互补系统,提出了一种两阶段优化的光热电站镜场、发电装机和储热容量的协调优化配置方法。
+	\qquad QiYuchen\footfullcite{QiYuchen2020} 针对含风电、光伏、光热、火电、水电的多能互补系统,提出了一种两阶段优化的光热电站镜场、发电装机和储热容量的协调优化配置方法。
 
-	已有研究主要面向电源侧多能互补发电系统,针对“沙戈荒”大规模基地的新能源与储能协调优化配置的研究还较为少见。
+	\qquad 已有研究主要面向电源侧多能互补发电系统,针对“沙戈荒”大规模基地的新能源与储能协调优化配置的研究还较为少见。
 \end{frame}
 
 \section{研究内容与方法}
