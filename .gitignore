@@ -13,7 +13,6 @@
 .*.lb
 *.nav
 *.snm
-*.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -35,5 +34,3 @@
 *.dvi
 *.xdv
 *-converted-to.*
-*.pdf
-presentation_1.pdf
