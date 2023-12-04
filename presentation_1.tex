@@ -24,6 +24,7 @@
 \usepackage{bm}
 \usepackage{amsthm}
 \usepackage{ulem}
+\usepackage{multirow}
 % \usepackage{algorithmicx,algorithm}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 \usepackage{fontspec}
@@ -34,13 +35,13 @@
 %\addbibresource{example.bib} %BibTeX数据文件及位置
 \addbibresource{bibtex3.bib}
 \setbeamerfont{footnote}{size=\tiny}
-%\usepackage[round,sort&compress]{natbib}
 \renewcommand{\baselinestretch}{1.1}
 
 %%%%% ===== 自定义命令 *****
 \newcommand{\myem}[1]{\textcolor{blue}{#1}}
 \renewcommand{\today}{\number\year 年\number\month 月\number\day 日}
 \renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
 %\newtheorem{theorem}{Theorem}
 
 \begin{document}
@@ -79,16 +80,11 @@
 \section{问题背景与研究意义}
 
 \begin{frame}
-	\frametitle{问题背景} 
-	\qquad 我国沙漠、戈壁、荒漠地区风能、太阳能资源丰富,习近平总书记在《生物多样性公约》第十五次缔约方大会领导人峰会主旨讲话中提出,中国将大力发展新能源,在沙漠、戈壁、荒漠地区加快规划建设大型风电光伏基地项目[1]。建设“沙戈荒”大型新能源基地是实现我国“碳达峰、碳中和”目标的重要举措[2]。
-\end{frame}
-
-\begin{frame}
-	\frametitle{研究意义} 
-	\qquad 预计到2030年,国家规划建设了约4.55亿千瓦的“沙戈荒”新能源基地,“沙戈荒”新能源基地以风光火储多能互补一体化形式,通过特高压直流通道将清洁电力外送至中东部负荷中心消纳,是我国未来新能源消纳的重要形式[3]。
-
+	\frametitle{问题背景与研究意义} 
+	\qquad 我国沙漠、戈壁、荒漠地区风能、太阳能资源丰富,习近平总书记在《生物多样性公约》第十五次缔约方大会领导人峰会主旨讲话中提出,中国将大力发展新能源,在沙漠、戈壁、荒漠地区加快规划建设大型风电光伏基地项目\footfullcite{习}。建设“沙戈荒”大型新能源基地是实现我国“碳达峰、碳中和”目标的重要举措\footfullcite{ref1}。
+	
 	\qquad 所以为了提高系统的经济性、可靠性,在规划阶段如何合理配置新能源电源及储能的容量是一个重要的研究问题。
-
+	
 \end{frame}
 
 \section{研究现状}
@@ -106,7 +102,7 @@
 	\frametitle{研究现状} 
 	文献[12]提出了一种基于多目标规划的光伏电站+光热电站的混合优化配置方法。
 	
-	文献[13]针对含风电、光伏、光热、火电、水电的多能互补系统,提出了一种两阶段优化的光热电站镜场、发电装机和储热容量的协调优化配置方法。
+	文献\footfullcite{ref3} 针对含风电、光伏、光热、火电、水电的多能互补系统,提出了一种两阶段优化的光热电站镜场、发电装机和储热容量的协调优化配置方法。
 
 	已有研究主要面向电源侧多能互补发电系统,针对“沙戈荒”大规模基地的新能源与储能协调优化配置的研究还较为少见。
 \end{frame}
@@ -115,24 +111,53 @@
 
 \begin{frame}
 	\frametitle{系统结构} 
-	图\ref*{fig.1}给出了简化后系统的整体结构示意。系统内新能源基地采用风光火储多能互补一体化的形式,通过特高压直流外送通道将清洁电力向受端电网输送。
+	\qquad 图\ref*{fig.1}给出了简化后系统的整体结构示意。系统内新能源基地采用风光火储多能互补一体化的形式,通过特高压直流外送通道将清洁电力向受端电网输送。
 	\begin{figure}[htbp]  
 		\centering  
 		\includegraphics[scale=0.6]{./pic/系统结构示意图.pdf}
 		\caption{系统结构示意图}
 		\label{fig.1}
 	\end{figure}
-	在此系统上以总投资成本最小为目标,考虑新能源发电量占比、新能源利用率、储能电站运行、火电机组运行与外送通道等约束,建立风光储系统容量优化模型。
 \end{frame}
 
 \begin{frame}
-	\frametitle{研究内容} 
-	
+	\frametitle{系统建模} 
+	\qquad 在图\ref*{fig.1}所示系统上以总投资成本最小为目标,考虑新能源、储能电站运行、火电机组运行与外送通道运行等约束,建立混合整数非线性的风光储系统容量优化模型。
+	\begin{align}
+		\min Z&=f(x)\label{eq.1}\\
+		s.\ t. \quad g(x) &\leq 0 \label{eq.2}\\
+		h(x)&=0 \label{eq.3}\\
+		x_i &\in \mathbb{Z},\quad  i \in I \label{eq.4}\\
+		x_j &\in \{0,1\}, \quad j \in J \label{eq.5}
+	\end{align}
 \end{frame}
 
 \begin{frame}
-	\frametitle{研究方法} 
+	\frametitle{问题规模}
+	\begin{table}[htbp]
+		\centering
+		\caption{CPLEX求解器预处理前后的问题规模}
+		\label{tab.1}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		预处理前后 & 项目 & 数量  \\ \hline
+		\multirow{4}{*}{CPLEX预处理前}	& 0-1变量个数  		& 78624  \\ \cline{2-3} 
+										& 一般整数变量个数 	& 8736   \\ \cline{2-3} 
+								   		& 连续变量个数   	& 61157  \\ \cline{2-3} 
+								   		& 约束数量			& 332156 \\ \hline
+		\multirow{2}{*}{CPLEX预处理后} 	& 0-1变量个数		& 69883  \\ \cline{2-3} 
+								   		& 一般整数变量个数 	& 8736   \\ \hline
+		\end{tabular}
+	\end{table}
+\end{frame}
 
+\begin{frame}
+	\frametitle{线性化与模型的简化}
+	\qquad 所建立的模型中存在分段约束和大量整数变量,直接进行求解难以在可接受的时间成本内解决。
+	\begin{itemize}
+		\item 通过引入01变量对非线性的约束条件进行线性化操作;
+		\item 根据实际情况对模型进行合理的简化,以减小模型的规模。
+	\end{itemize}
 \end{frame}
 
 \section{未来工作安排}
@@ -144,8 +169,6 @@
 
 	3.完善模型,使容量配置优化模型更符合实际情况。
 \end{frame}
-
-
 
 % ====== End =========================================
 \begin{frame}
