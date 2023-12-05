@@ -25,6 +25,7 @@
 \usepackage{amsthm}
 \usepackage{ulem}
 \usepackage{multirow}
+% \usepackage{xeCJK}
 % \usepackage{algorithmicx,algorithm}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 \usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
@@ -32,8 +33,8 @@
 \setbeamerfont{footnote}{size=\tiny}
 \renewcommand{\baselinestretch}{1.1}
 \usepackage{ctex}
-\setCJKfamilyfont{myfont}{STSong}
-\newcommand{\MyFont}{\CJKfamily{myfont}}
+% \setCJKfamilyfont{myfont}{STSong}
+% \newcommand{\MyFont}{\CJKfamily{myfont}}
 %%%%% ===== 自定义命令 *****
 \newcommand{\myem}[1]{\textcolor{blue}{#1}}
 \renewcommand{\today}{\number\year 年\number\month 月\number\day 日}
@@ -139,11 +140,11 @@
 		\begin{tabular}{|c|c|c|}
 		\hline
 		预处理前后 & 项目 & 数量  \\ \hline
-		\multirow{4}{*}{CPLEX预处理前}	& 0-1变量个数  		& 78624  \\ \cline{2-3} 
+		\multirow{4}{*}{CPLEX预处理前}	& 0-1变量个数  		& 61152  \\ \cline{2-3} 
 										& 一般整数变量个数 	& 8736   \\ \cline{2-3} 
 								   		& 连续变量个数   	& 61157  \\ \cline{2-3} 
-								   		& 约束数量			& 332156 \\ \hline
-		\multirow{2}{*}{CPLEX预处理后} 	& 0-1变量个数		& 69883  \\ \cline{2-3} 
+								   		& 约束数量			& 262268 \\ \hline
+		\multirow{2}{*}{CPLEX预处理后} 	& 0-1变量个数		& 69884  \\ \cline{2-3} 
 								   		& 一般整数变量个数 	& 8736   \\ \hline
 		\end{tabular}
 	\end{table}
@@ -151,23 +152,12 @@
 
 \begin{frame}
 	\frametitle{线性化与模型的简化}
-	\qquad 所建立的模型中存在分段约束和大量整数变量,直接进行求解难以在可接受的时间成本内解决。
+	\qquad 所建立的模型中存在非线性约束和大量整数变量,直接进行求解难以在可接受的时间成本内解决。
 	\begin{itemize}
-		\item 通过引入0-1变量对非线性的约束条件进行线性化操作;
+		\item 通过引入0-1变量将非线性约束线性化;
 		\item 根据实际情况对模型进行合理的简化,以减小模型的规模。
 	\end{itemize}
 \end{frame}
-
-% \begin{frame}
-% 	\frametitle{数据基础}
-% 	\qquad 
-% 	\begin{figure}[htbp]
-% 		\centering
-% 		\includegraphics[scale=0.23]{./pic/windPV.eps}
-% 		\caption{归一化风电光伏逐小时理论出力}
-% 		\label{fig.2}
-% 	\end{figure}
-% \end{frame}
 
 \section{未来工作安排}
 \begin{frame}
@@ -176,7 +166,7 @@
 
 	2.继续探索提高求解效率和求解质量的方法;
 
-	3.完善模型,使容量配置优化模型更符合实际情况。
+	3.完善模型,并尝试结合机组组合问题,使容量配置优化模型更符合实际情况。
 \end{frame}
 
 % ====== End =========================================
