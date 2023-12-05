@@ -103,7 +103,7 @@
 	
 	\qquad QiYuchen\footfullcite{QiYuchen2020} 针对含风电、光伏、光热、火电、水电的多能互补系统,提出了一种两阶段的光热电站镜场、发电装机和储热容量的协调优化配置方法。
 
-	\qquad 已有研究主要面向电源侧多能互补发电系统,针对“沙戈荒”大规模基地的新能源与储能协调优化配置的研究还较为少见。
+	\qquad 综上,已有研究主要面向电源侧多能互补发电系统,针对“沙戈荒”大规模基地的新能源与储能协调优化配置的研究还较为少见。
 \end{frame}
 
 \section{研究内容与方法}
@@ -121,7 +121,7 @@
 
 \begin{frame}
 	\frametitle{系统建模} 
-	\qquad 在图\ref*{fig.1}所示系统上以总投资成本最小为目标,考虑新能源、储能电站运行、火电机组运行与外送通道运行等约束,建立混合整数非线性的风光储系统容量优化模型。
+	\qquad 在图\ref*{fig.1}所示系统上以总投资成本最小为目标,考虑功率平衡、新能源电站、储能电站、火电机组与外送通道的运行及特性等约束,建立混合整数非线性的风光储系统容量优化模型,并表示为如下一般模型:
 	\begin{align}
 		\min Z&=f(x)\label{eq.1}\\
 		s.\ t. \quad g(x) &\leq 0 \label{eq.2}\\
@@ -151,12 +151,20 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{线性化与模型的简化}
+	\frametitle{模型的转化与验证}
 	\qquad 所建立的模型中存在非线性约束和大量整数变量,直接进行求解难以在可接受的时间成本内解决。
 	\begin{itemize}
 		\item 通过引入0-1变量将非线性约束线性化;
 		\item 根据实际情况对模型进行合理的简化,以减小模型的规模。
 	\end{itemize}
+	\qquad 并在已获取到的数据上,通过数值实验验证模型。
+	\begin{figure}
+		\centering
+		\setlength{\abovecaptionskip}{0.cm}
+		\includegraphics[scale=0.2]{./pic/windPV.pdf}
+		\caption{我国西北某地归一化的风电光伏逐小时理论出力}
+		\label{fig.2}
+	\end{figure}
 \end{frame}
 
 \section{未来工作安排}
