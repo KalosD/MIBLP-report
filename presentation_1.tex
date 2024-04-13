@@ -63,6 +63,10 @@
 \end{frame}
 
 \begin{frame}
+	\cite{fischetti_use_2018}
+\end{frame}
+
+\begin{frame}
 	\frametitle{目录}
 	\tableofcontents[hideallsubsections] %[pausesections]
 \end{frame}
@@ -74,97 +78,70 @@
 }
 
 %===== Main part start here ==========================
-%===== 开题报告 =======================================
+% 双层规划问题介绍
+% 问题背景
+% 混合整数双层规划问题的求解算法
+% 数值实验
+% 未来工作安排
 
-\section{问题背景与研究意义}
+\section{双层规划问题}
 
 \begin{frame}
-	\frametitle{问题背景与研究意义} 
-	\qquad 我国沙漠、戈壁、荒漠地区风能、太阳能资源丰富,习近平总书记在《生物多样性公约》第十五次缔约方大会领导人峰会主旨讲话中提出,中国将大力发展新能源,在沙漠、戈壁、荒漠地区加快规划建设大型风电光伏基地项目\footfullcite{ref1}。建设“沙戈荒”大型新能源基地是实现我国“碳达峰、碳中和”目标的重要举措\footfullcite{ref2}。
-	
-	\qquad 所以为了提高系统的经济性、可靠性,在规划阶段如何合理配置新能源电源及储能的容量是一个重要的研究问题。
+	\frametitle{双层规划问题的标准形式} 
+	\begin{equation}
+		\begin{aligned}
+			\min_{x,y}& F(x,y)  \\
+			&G(x,y)\leq0 \\
+			&y\in\arg\operatorname*{min}_{y^{\prime}}\{f(x,y^{\prime}):g(x,y^{\prime})\leq0\},
+		\end{aligned}
+	\end{equation}
+	\begin{itemize}
+		\item $x$为上层变量, $y$为下层变量;
+		\item $F(x,y)$和$f(x,y)$分别为上层和下层的目标函数;
+		\item $G(x,y)$和$g(x,y)$分别为上层和下层的约束条件.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{双层规划问题基本求解思想} 
 	
 \end{frame}
 
-\section{研究现状}
+
+\section{问题背景}
 
 \begin{frame}
-	\frametitle{研究现状} 
-	\qquad 刘泽洪\footfullcite{liuzehong2023}研究了支撑新能源基地电力外送的电源组合优化配置策略,测算了新能源基地为满足通道利用率和运行经济性所需配置的电化学储能装机占比。
 
-	\qquad 吴瑊\footfullcite{wujian2023}针对“无火电”能源大基地构建开展研究,从经济性、调峰、一次调频、惯例响应等方面评估了新能源与储能在能源大基地中对火电机组的替代作用。
 	
-	\qquad 金晨\footfullcite{jinchen2021}提出了电力系统源-网-储灵活性资源协调优化模型,考虑各类灵活性资源约束,从不同时间和空间尺度统筹优化新能源电源、储能及电网互联容量。
+\end{frame}
+
+\section{双层规划} 
+
+\begin{frame}
+
 \end{frame}
 
 \begin{frame}
 	\frametitle{研究现状} 
-	\qquad Allen\footfullcite{Allen2018} 提出了一种基于多目标规划的光伏电站+光热电站的混合优化配置方法。
-	
-	\qquad QiYuchen\footfullcite{QiYuchen2020} 针对含风电、光伏、光热、火电、水电的多能互补系统,提出了一种两阶段的光热电站镜场、发电装机和储热容量的协调优化配置方法。
 
-	\qquad 综上,已有研究主要面向电源侧多能互补发电系统,针对“沙戈荒”大规模基地的新能源与储能协调优化配置的研究还较为少见。
 \end{frame}
 
 \section{研究内容与方法}
 
 \begin{frame}
-	\frametitle{系统结构} 
-	\qquad 图\ref*{fig.1}给出了简化后系统的整体结构示意。系统内新能源基地采用风光火储多能互补一体化的形式,通过特高压直流外送通道将清洁电力向受端电网输送。
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[scale=0.6]{./pic/系统结构示意图.pdf}
-		\caption{系统结构示意图}
-		\label{fig.1}
-	\end{figure}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{系统建模} 
-	\qquad 在图\ref*{fig.1}所示系统上以总投资成本最小为目标,考虑功率平衡、新能源电站、储能电站、火电机组与外送通道的运行及特性等约束,建立混合整数非线性的风光储系统容量优化模型,并表示为如下一般形式:
-	\begin{align}
-		\min Z&=f(x)\label{eq.1}\\
-		s.\ t. \quad g(x) &\leq 0 \label{eq.2}\\
-		h(x)&=0 \label{eq.3}\\
-		x_i &\in \mathbb{Z},\quad  i \in I \label{eq.4}\\
-		x_j &\in \{0,1\}, \quad j \in J \label{eq.5}
-	\end{align}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{问题规模}
-	\begin{table}[htbp]
-		\centering
-		\caption{CPLEX求解器预处理前后的问题规模}
-		\label{tab.1}
-		\begin{tabular}{|c|c|c|}
-		\hline
-		预处理前后 & 项目 & 数量  \\ \hline
-		\multirow{4}{*}{CPLEX预处理前}	& 0-1变量个数  		& 61152  \\ \cline{2-3} 
-										& 一般整数变量个数 	& 8736   \\ \cline{2-3} 
-								   		& 连续变量个数   	& 61157  \\ \cline{2-3} 
-								   		& 约束数量			& 262268 \\ \hline
-		\multirow{2}{*}{CPLEX预处理后} 	& 0-1变量个数		& 69884  \\ \cline{2-3} 
-								   		& 一般整数变量个数 	& 8736   \\ \hline
-		\end{tabular}
-	\end{table}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{模型的转化与验证}
-	\qquad 所建立的模型中存在非线性约束和大量整数变量,直接进行求解难以在可接受的时间成本内解决。
-	\begin{itemize}
-		\item 通过引入0-1变量将非线性约束线性化;
-		\item 根据实际情况对模型进行合理的简化,以减小模型的规模。
-	\end{itemize}
-	\qquad 并在已获取到的数据上,通过数值实验验证模型。
-	\begin{figure}
-		\centering
-		\setlength{\abovecaptionskip}{0.cm}
-		\includegraphics[scale=0.2]{./pic/windPV.pdf}
-		\caption{我国西北某地归一化的风电光伏逐小时理论出力}
-		\label{fig.2}
-	\end{figure}
+
 \end{frame}
 
 \section{未来工作安排}
