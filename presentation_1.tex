@@ -29,6 +29,7 @@
 % \usepackage{xeCJK}
 % \usepackage{algorithmicx,algorithm}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\SetKwInOut{KwIn}{Init}
 \usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
 \addbibresource{reference.bib}
 \setbeamerfont{footnote}{size=\tiny}
@@ -273,28 +274,30 @@
 \begin{frame}
 	\begin{algorithm}[H]
 		\caption{求解MIBLP的分支定界算法}
-		\KwIn{HPR问题}
-		\While{未找到最优解}{
-			求解HPR问题, 得到最优解$(x^{\prime},y^{\prime})$和最优值$z^{\prime}$\;
-			\If{$z^{\prime}$是整数解}{
-				\If{$z^{\prime}$优于当前最优解}{
-					更新最优解\;
-				}
+		\KwIn{在HPR上应用标准的分支定界算法, 并关闭当前最优解的更新步骤}
+		\For{未探测的节点无法进行分支}{
+			令$(x^*,y^*)$为当前节点HPR的整数解\;
+			计算下层问题的值函数$\Phi(x^*)$\;
+			\If{$d^Ty^*\le \Phi(x^*)$}{
+				当前解$(x^*,y^*)$为双层可行解: 更新最优解并继续探测当前节点\;
 			}
 			\Else{
-				选择一个整数变量$x_j$进行分支\;
-				将问题分解为两个子问题\;
-				递归求解子问题\;
+				\If{变量$x_j(j\in J_F)$, 不是通过分支固定}{
+					在不是通过分支固定的$x_j(j\in J_F)$上继续分支, 即使$x_j^*$为整数\;
+				}
+				\Else{
+					令$(\hat{x},\hat{y})$为当前节点restricted HPR的最优解\;
+					可能使用$(\hat{x},\hat{y})$更新当前最优解, 并继续探测当前节点\;
+				}
 			}
 		}
 	\end{algorithm}
-
 \end{frame}
 
 \section{未来工作安排}
 \begin{frame}
 	\frametitle{未来工作安排} 
-	1. 继续学习文献中的方法;
+	1. 继续学习文献中的Intersection Cuts方法;
 
 	2. 实现算法并进行初步数值实验;
 
