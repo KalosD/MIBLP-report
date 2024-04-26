@@ -254,7 +254,7 @@
 		\begin{equation*}
 			\inf_x\{x-\lceil x\rceil:0\leq x\leq1\}
 		\end{equation*}
-		显然下确界为-1, 但无法达到.
+		显然下确界为$-1$, 但无法达到.
 	\end{tcolorbox}
 
 	\begin{block}{Aussmption2}
@@ -284,6 +284,19 @@
 		\end{subequations}
 	\end{itemize}
 	
+\end{frame}
+
+\begin{frame}
+	\frametitle{基本思想}
+	\begin{block}{针对值函数单层化重述的问题使用分支定界算法}
+		通过分支求解HPR以及动态的执行$d^Ty\leq\Phi(x)$约束.
+	\end{block}
+	给定HPR线性松弛问题的最优解$(x^*,y^*)$:
+	\begin{itemize}
+		\item $(x^*,y^*)$对HPR不可行(不满足整数约束)$\rightarrow$继续进行分支;
+		\item $(x^*,y^*)$对HPR可行, 且满足$d^Ty^*\leq\Phi(x^*)$ $\rightarrow$当前解为双层可行解, 正常进行最优解的更新;
+		\item $(x^*,y^*)$对HPR可行, 但$d^Ty^*>\Phi(x^*)$ $\rightarrow (x^*,y^*)$不是双层可行解(需要特殊处理).
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
